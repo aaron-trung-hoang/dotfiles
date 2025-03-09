@@ -10,6 +10,9 @@ install_common() {
 # Function to handle macOS with Homebrew
 install_macos_brew() {
     echo "macos-brew selected. Add your installation commands here."
+
+    chmod +x ./macos/install_packages.sh
+    ./macos/install_packages.sh
 }
 
 # Function to handle Ubuntu
@@ -28,13 +31,13 @@ install_wsl() {
 
 # Main script
 echo "Select your environment:"
-echo "1) macos-brew"
+echo "1) macos"
 echo "2) ubuntu"
 echo "3) wsl"
-read -p "Enter your choice (macos-brew/ubuntu/wsl): " choice
+read -p "Enter your choice (macos/ubuntu/wsl): " choice
 
 case "$choice" in
-    "macos-brew")
+    "macos")
         install_macos_brew
         install_common
         ;;
