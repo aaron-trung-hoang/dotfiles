@@ -11,7 +11,6 @@ The following packages need to be installed manually as they are not available t
 - **docker**: A platform for developing, shipping, and running applications in containers.
 - **vscode**: Visual Studio Code, a source-code editor developed by Microsoft.
 - **lens**: The Kubernetes IDE.
-- **stow**: A symlink farm manager.
 
 Please follow the respective official documentation for each package
 to complete the installation process.
