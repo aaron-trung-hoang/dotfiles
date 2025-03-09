@@ -29,7 +29,8 @@ Before you begin, ensure you have met the following requirements:
 
 ### Installation
 
-Run these commands:
+Run these commands (I tried to make the script as smooth as possible 😢 but the installation
+of oh-my-zsh always interrupts the process, please re run the commands again))
 
 ```zsh
 chmod +x ./main.sh
