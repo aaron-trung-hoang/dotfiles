@@ -120,6 +120,10 @@
     {
       "before": ["g", "h"],
       "commands": ["editor.action.showDefinitionPreviewHover"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.goToTypeDefinition"]
     }
   ],
   "vim.visualModeKeyBindings": [
