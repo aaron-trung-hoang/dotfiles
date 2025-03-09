@@ -71,5 +71,17 @@
   {
     "key": "ctrl+z",
     "command": "workbench.action.toggleZenMode"
+  },
+
+  // Multiline editing
+  {
+    "key": "ctrl+n",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "cmd+d",
+    "command": "-editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
   }
 ]
