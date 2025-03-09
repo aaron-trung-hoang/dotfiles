@@ -1,69 +1,108 @@
-# Project Setup
-As an enthusiast on NeoVim, developer environment configuration, I created a framework that can easilly be used to setup a new machine with all the necessary tools and configurations. This project is based on NixOS and Home-Manager, which are the best tools for declarative system configuration and package management.
+# Dotfiles Repository
 
-This framework will make sure you will have the expected environment, tools, dotfiles configurations on any machines, OS, or architecture. (Except Windows, I'm sorry for that. :D - Be a man and use Arch Linux instead!)
+## Introduction
 
-This project requires executing a setup script to configure the local machine environment. Please follow the instructions below based on your operating system.
+👋 Hi everyone, I'm Anthony Hoang Quoc Trung. Welcome to my dotfiles repository!
 
-## Project structure
+This repository contains my dotfiles that can be installed on various operating systems including Ubuntu 🐧, Windows WSL 🪟, and macOS 🍎. With this repo, I can configure my new local development environment with ease and in a declarative way.
+
+If you are using Windows, please install WSL (with Ubuntu). Be adventurous!
+
+### Supported Platforms
+
+The dotfiles in this repository are designed to work on the following platforms:
+
+- Ubuntu 🐧
+- Windows WSL 🪟
+- macOS 🍎
+
+## How to use
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have a working internet connection 🌐.
+- For macOS, install *HomeBrew* 🍺 - my preferred package manager for Mac.
+- You have cloned this repository and opened a terminal in this repo.
+- You have basic knowledge of the command line interface 💻.
+
+### Installation
+
+Run these commands:
+
+```zsh
+chmod +x ./main.sh
+./main.sh # this requires you to enter your platform
 ```
+
+And that's all.
+
+## Features
+
+This repository includes the following features:
+
+- Platform-specific packages and tools like git, curl, awscli...
+- ZShell with auto suggestions, auto completion, powerlevel10k.
+- Aliases for all utilities.
+- Tmux configuration for terminal multiplexing.
+- Wezterm configuration.
+- And much more!
+
+## Disclaimer
+
+Please note that these configurations are tailored to my personal preferences. Feel free to modify them to suit your needs.
+
+## Configuration
+
+To configure this repository for your usage, here are some tips:
+
+### Folder structure
+
+```text
 .
-├── dotfiles                    - Contains all the dotfiles for the local machine
-│   ├── .config                 - Nvim configuration is maintained in this dir
-│   ├── .alias
-│   ├── .p10k.zsh
-│   ├── .tmux.conf
-│   ├── .vimrc
-│   └── .zshrc
-├── hosts                       - NixOS configurations for the local machine
-│   └── nixos
-├── common.nix                  - Common home-manager configuration for all machines
-├── home.amd64.nix              - Home-manager configuration for amd64 architecture
-├── home.arm64.nix              - Home-manager configuration for arm64 architecture
-├── flake.lock                  - flake.lock file, remove if needed
-├── flake.nix                   - flake configuration file
-├── .gitignore
-├── Dockerfile                  - Dev container that has all the tools installed
+├── install_common.sh
 ├── LICENSE
-└── README.md
+├── macos-brew
+├── main.sh
+├── README.md
+├── scripts
+│   └── docker-install.sh
+├── tmux
+│   ├── .tmux.conf
+├── ubuntu
+│   ├── apt_packages
+│   ├── install_packages.sh
+│   ├── out_of_apt_packages.md
+│   └── snap_apps
+├── wezterm
+│   ├── .wezterm.lua
+├── zsh
+│   ├── .zshrc
+│   ├── .zshenv
+└── └── .p10k.zsh
 ```
 
-## Prerequisites
-- nixpkg
-- home-manager
-- flake
+- Platform tools and packages:
+  - Ubuntu directory:
+    - `apt_packages`: packages installed using apt
+    - `snap_apps`: apps installed using snap
+    - `out_of_apt_packages.md`: readme file for tools and packages installed manually
+  - macOS-Brew:
+        - (Add details here)
+- Configuration directories (wezterm, tmux, zsh):
+  - Wezterm configuration folder: contains the dotfile to configure wezterm
+  - Zsh configuration: contains the dotfile to configure zshrc file, p10k zsh file
+  - Tmux: contains the dotfile for tmux - a terminal multiplexer that I use
 
-NOTE: You will need to enable flake with this command:
-```
-mkdir ~/.config/nix/
-touch ~/.config/nix/nix.conf
-echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-```
+## Contributing
 
-### For wsl
-For neovim to work properly with the wsl clipboard you should install:
-win32yank using powershell:
-```
-choco install win32yank
-```
+Feel free to contribute to this repository by submitting pull requests or opening issues. Your feedback and contributions are highly appreciated!
 
-## Installation
-1. For amd64 architecture, run the following command:
-```
-home-manager switch --impure --flake .#amd64
-```
+## License
 
-2. For arm64 architecture, run the following command:
-```
-home-manager switch --impure --flake .#arm64
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-3. For wsl architecture, run the following command:
-```
-home-manager switch --impure --flake .#wsl
-```
+## Acknowledgements
 
-4. For darwin architecture, run the following command:
-```
-home-manager switch --impure --flake .#darwin
-```
+Thanks to all the open-source projects and contributors that make this possible.

@@ -1,3 +1,7 @@
 plugged/
 env/
 deploy.sh
+.log
+bg/
+.DS_Store
+dev_*.lua
