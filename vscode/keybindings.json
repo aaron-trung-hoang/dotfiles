@@ -79,9 +79,43 @@
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
+
+  // disable default "findNextMatch" on both Linux and Mac
   {
     "key": "cmd+d",
     "command": "-editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
+    "when": "editorFocus && isMac"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus && isLinux"
+  },
+
+  // COPILOT KEY BINDINGS
+  {
+    "key": "alt+i",
+    "command": "inlineChat.start",
+    "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput && isLinux || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput && isLinux"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "-inlineChat.start",
+    "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput && isLinux || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput && isLinux"
+  },
+  {
+    "key": "shift+alt+i",
+    "command": "workbench.action.chat.open",
+    "when": "isLinux"
+  },
+  {
+    "key": "ctrl+alt+i",
+    "command": "-workbench.action.chat.open",
+    "when": "isLinux"
+  },
+  {
+    "key": "shift+alt+i",
+    "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
+    "when": "editorTextFocus && isLinux"
   }
 ]
