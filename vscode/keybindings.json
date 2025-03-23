@@ -65,7 +65,7 @@
 
   // EXTRA
   {
-    "key": "ctrl+shift+5",
+    "key": "ctrl+shift+6",
     "command": "editor.emmet.action.matchTag"
   },
   {
