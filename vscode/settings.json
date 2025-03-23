@@ -156,5 +156,6 @@
   // Set keyboard.dispatch to keyCode to fix some issue with key remapping in Gnome Tweak
   "keyboard.dispatch": "keyCode",
   "git.suggestSmartCommit": false,
-  "makefile.configureOnOpen": true
+  "makefile.configureOnOpen": true,
+  "diffEditor.ignoreTrimWhitespace": false
 }
