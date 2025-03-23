@@ -39,6 +39,36 @@ chmod +x ./main.sh
 
 And that's all.
 
+## Governance
+
+### For Ubuntu
+
+- **Dotfiles**: Modify files like `wezterm`, `tmux`, `p10k`, `zshenv`, and `zshrc` directly in the dotfiles directory.
+- **VSCode Settings**: Modify settings directly in the IDE, then copy the updated files to the `vscode` directory within the dotfiles.
+
+```zsh
+# TODO: add vscode copy command here
+```
+
+- **Packages**: Install packages via CLI using `apt` or `snap`, and update the corresponding files in the `ubuntu` directory.
+
+### For macOS
+
+- **Dotfiles**: Modify files like `wezterm`, `tmux`, `p10k`, `zshenv`, and `zshrc` directly in the dotfiles directory.
+- **VSCode Settings**: Modify settings directly in the IDE, then copy the updated files to the `vscode` directory within the dotfiles.
+
+```zsh
+cp ~/Library/Application\ Support/Code/User/keybindings.json ./vscode/keybindings.json
+cp ~/Library/Application\ Support/Code/User/settings.json ./vscode/settings.json
+```
+
+- **Packages**: Install packages using `brew`, then dump the Brewfile and copy it to the `macos` directory. Use the following command to update the Brewfile:
+
+```zsh
+# For brew
+brew bundle dump --file=./macos/Brewfile --force
+```
+
 ## Features
 
 This repository includes the following features:
