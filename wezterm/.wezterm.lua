@@ -28,10 +28,10 @@ config.window_padding = {
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium", stretch = "Expanded" })
-config.font_size = 11
+config.font_size = 15
 
 config.window_decorations = "RESIZE"
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 
 config.window_frame = {
     border_left_width = "0.28cell",
