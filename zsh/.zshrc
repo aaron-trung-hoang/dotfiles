@@ -74,6 +74,7 @@ alias cov="cd $HOME/Workspace/FProjects/Cov"
 alias iap="cd $HOME/Workspace/FProjects/Iap"
 alias psn="cd $HOME/Workspace/Personal"
 alias dot="cd $HOME/Workspace/dotfiles"
+alias ns="cd $HOME/Workspace/Ns"
 
 # Kubectl completion
 source <(kubectl completion zsh)
