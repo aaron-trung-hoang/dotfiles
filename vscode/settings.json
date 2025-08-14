@@ -49,7 +49,7 @@
   // Workbench settings
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.statusBar.visible": false,
+  "workbench.statusBar.visible": true,
 
   // Zen Mode settings
   "zenMode.fullScreen": true,
