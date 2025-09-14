@@ -66,3 +66,7 @@ done
 # Apply stow for zsh, tmux, and wezterm dotfiles
 echo "Applying stow for zsh, tmux, and wezterm dotfiles..."
 stow -v -d "$(pwd)" -t ~ zsh tmux wezterm
+
+# Copy the background image for wezterm
+mkdir -p "$HOME/.background-wezterm"
+cp "$(pwd)/background/terminal.jpg" "$HOME/.background-wezterm/"

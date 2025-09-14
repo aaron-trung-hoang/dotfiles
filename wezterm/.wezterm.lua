@@ -6,7 +6,7 @@ local brightness = 0.03
 
 -- image setting
 local user_home = os.getenv("HOME")
-local background_folder = user_home .. "/.config/nvim/bg"
+config.window_background_image = user_home .. "/.background-wezterm/terminal.jpg"
 
 config.window_background_image_hsb = {
     -- Darken the background image by reducing it
@@ -26,6 +26,10 @@ config.window_padding = {
     bottom = 0,
 }
 
+config.initial_cols = 170 -- set width in character cells
+config.initial_rows = 50 -- set height in character cells
+
+
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 15
@@ -42,40 +46,6 @@ config.window_frame = {
     border_right_color = "pink",
     border_bottom_color = "pink",
     border_top_color = "pink",
-}
-
--- keys
-config.keys = {
-    {
-        key = ">",
-        mods = "CTRL|SHIFT",
-        action = wezterm.action_callback(function(window)
-            brightness = math.min(brightness + 0.01, 1.0)
-            window:set_config_overrides({
-                window_background_image_hsb = {
-                    brightness = brightness,
-                    hue = 1.0,
-                    saturation = 0.8,
-                },
-                window_background_image = bg_image
-            })
-        end),
-    },
-    {
-        key = "<",
-        mods = "CTRL|SHIFT",
-        action = wezterm.action_callback(function(window)
-            brightness = math.max(brightness - 0.01, 0.01)
-            window:set_config_overrides({
-                window_background_image_hsb = {
-                    brightness = brightness,
-                    hue = 1.0,
-                    saturation = 0.8,
-                },
-                window_background_image = bg_image
-            })
-        end),
-    },
 }
 
 -- others
