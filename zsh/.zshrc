@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
