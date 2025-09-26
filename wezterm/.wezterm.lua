@@ -51,4 +51,8 @@ config.window_frame = {
 -- others
 config.default_cursor_style = "BlinkingUnderline"
 config.cursor_thickness = 2
+config.keys = {
+  {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
+}
+
 return config
