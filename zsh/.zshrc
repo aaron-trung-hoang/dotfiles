@@ -70,14 +70,16 @@ alias tka="tmux kill-session -a"
 alias tl="tmux ls"
 
 # Workspace aliases
-alias cov="cd $HOME/Workspace/FProjects/Cov"
-alias iap="cd $HOME/Workspace/FProjects/Iap"
-alias psn="cd $HOME/Workspace/Personal"
-alias dot="cd $HOME/Workspace/dotfiles"
-alias ns="cd $HOME/Workspace/Ns"
+alias dot="cd $HOME/Workspace/Dotfiles"
+alias ft="cd $HOME/Workspace/Fastrak"
 
 # Kubectl completion
 source <(kubectl completion zsh)
+
+# tool init
+eval "$(zoxide init zsh)"
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
 # NVM
 if [[ "$(uname)" == "Darwin" && -x "$(command -v brew)" ]]; then
