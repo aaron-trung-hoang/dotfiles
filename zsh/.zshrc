@@ -9,11 +9,13 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# ENABLE_CORRECTION="true"
-
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
+HISTSIZE=3000
+SAVEHIST=3000
 HIST_STAMPS="mm/dd/yyyy"
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
 plugins=(git aws zsh-autosuggestions zsh-syntax-highlighting)
 
