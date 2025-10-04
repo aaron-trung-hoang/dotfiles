@@ -47,7 +47,7 @@ echo "----------------------------"
 echo "I will manage dotfiles using GNU Stow."
 
 # Dotfiles to manage
-dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua)
+dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua .gitconfig)
 
 # Clean up existing files and create symbolic links
 for file in "${dotfiles[@]}"; do
@@ -63,9 +63,9 @@ for file in "${dotfiles[@]}"; do
     echo "------"
 done
 
-# Apply stow for zsh, tmux, and wezterm dotfiles
-echo "Applying stow for zsh, tmux, and wezterm dotfiles..."
-stow -v -d "$(pwd)" -t ~ zsh tmux wezterm
+# Apply stow for zsh, tmux, wezterm, and git dotfiles
+echo "Applying stow for zsh, tmux, wezterm, and git dotfiles..."
+stow -v -d "$(pwd)" -t ~ zsh tmux wezterm git
 
 # Copy the background image for wezterm
 mkdir -p "$HOME/.background-wezterm"
