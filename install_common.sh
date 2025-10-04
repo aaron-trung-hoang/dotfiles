@@ -1,50 +1,72 @@
 #!/bin/bash
 
-echo "Installing common tools..."
+set -e  # Exit on error
+
+# Source platform utilities
+source "$(dirname "$0")/lib/platform.sh"
+
+print_info "Installing common tools and configurations..."
+echo ""
 
 # Install oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing oh-my-zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ""--unattended""
+    print_info "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    print_success "oh-my-zsh installed"
 else
-    echo "oh-my-zsh is already installed."
+    print_info "oh-my-zsh is already installed"
 fi
 
+# Install zsh plugins
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+
 # Install zsh-autosuggestions
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-    echo "Installing zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+    print_info "Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    print_success "zsh-autosuggestions installed"
 else
-    echo "zsh-autosuggestions is already installed."
+    print_info "zsh-autosuggestions is already installed"
 fi
 
 # Install powerlevel10k
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-    echo "Installing powerlevel10k..."
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+    print_info "Installing powerlevel10k..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+    print_success "powerlevel10k installed"
 else
-    echo "powerlevel10k is already installed."
+    print_info "powerlevel10k is already installed"
 fi
 
 # Install zsh-autocomplete
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete" ]; then
-    echo "Installing zsh-autocomplete..."
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autocomplete" ]; then
+    print_info "Installing zsh-autocomplete..."
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "$ZSH_CUSTOM/plugins/zsh-autocomplete"
+    print_success "zsh-autocomplete installed"
 else
-    echo "zsh-autocomplete is already installed."
+    print_info "zsh-autocomplete is already installed"
 fi
 
 # Install zsh-syntax-highlighting
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-    echo "Installing zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+    print_info "Installing zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+    print_success "zsh-syntax-highlighting installed"
 else
-    echo "zsh-syntax-highlighting is already installed."
+    print_info "zsh-syntax-highlighting is already installed"
 fi
 
-echo "----------------------------"
+echo ""
+print_info "Managing dotfiles with GNU Stow..."
+echo ""
 
-echo "I will manage dotfiles using GNU Stow."
+# Check if stow is installed
+if ! command_exists stow; then
+    print_error "GNU Stow is not installed. Please install it first:"
+    echo "  macOS: brew install stow"
+    echo "  Ubuntu: sudo apt install stow"
+    exit 1
+fi
 
 # Dotfiles to manage
 dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua .gitconfig)
@@ -52,21 +74,58 @@ dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua .gitconfig)
 # Clean up existing files and create symbolic links
 for file in "${dotfiles[@]}"; do
     if [ -L "$HOME/$file" ]; then
-        echo "$file is already a symlink. Removing it."
+        print_info "$file is already a symlink. Removing it."
         rm -rf "$HOME/$file"
     elif [ -f "$HOME/$file" ]; then
-        echo "$file already exists. Backing up to $file.bak."
-        mv "$HOME/$file" "$HOME/$file.bak"
+        backup_file "$HOME/$file"
     else
-        echo "$file not found."
+        print_info "$file not found, will be created."
     fi
-    echo "------"
 done
 
-# Apply stow for zsh, tmux, wezterm, and git dotfiles
-echo "Applying stow for zsh, tmux, wezterm, and git dotfiles..."
-stow -v -d "$(pwd)" -t ~ zsh tmux wezterm git
+echo ""
+print_info "Applying stow for dotfiles..."
+
+# Get the directory where this script is located
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Apply stow for each configuration directory
+for config_dir in zsh tmux wezterm git; do
+    if [ -d "$DOTFILES_DIR/$config_dir" ]; then
+        print_info "Stowing $config_dir..."
+        stow -v -d "$DOTFILES_DIR" -t ~ "$config_dir" 2>&1 | grep -v "^LINK: " || true
+        print_success "$config_dir stowed successfully"
+    else
+        print_warning "Directory $config_dir not found, skipping..."
+    fi
+done
+
+echo ""
+print_info "Setting up additional configurations..."
 
 # Copy the background image for wezterm
-mkdir -p "$HOME/.background-wezterm"
-cp "$(pwd)/background/terminal.jpg" "$HOME/.background-wezterm/"
+if [ -f "$DOTFILES_DIR/background/terminal.jpg" ]; then
+    print_info "Setting up WezTerm background..."
+    mkdir -p "$HOME/.background-wezterm"
+    cp "$DOTFILES_DIR/background/terminal.jpg" "$HOME/.background-wezterm/"
+    print_success "WezTerm background configured"
+else
+    print_warning "Background image not found, skipping..."
+fi
+
+# Set zsh as default shell if not already
+if [ "$SHELL" != "$(which zsh)" ]; then
+    print_info "Setting zsh as default shell..."
+    if command_exists chsh; then
+        chsh -s "$(which zsh)"
+        print_success "Default shell changed to zsh"
+        print_warning "You may need to log out and back in for this to take effect"
+    else
+        print_warning "Could not change default shell automatically. Please run: chsh -s \$(which zsh)"
+    fi
+else
+    print_info "zsh is already the default shell"
+fi
+
+echo ""
+print_success "Common tools installation completed!"

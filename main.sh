@@ -1,15 +1,30 @@
 #!/bin/bash
 
+set -e  # Exit on error
+
+# Source platform utilities
+source "$(dirname "$0")/lib/platform.sh"
+
+# Check we're in the right directory
+check_dotfiles_dir
+
 # Function to install common tools (e.g., zsh)
 install_common() {
-    echo "Installing common tools (e.g., zsh)..."
+    print_info "Installing common tools and dotfiles..."
     chmod +x ./install_common.sh
     ./install_common.sh
 }
 
 # Function to handle macOS with Homebrew
-install_macos_brew() {
-    echo "macos-brew selected. Add your installation commands here."
+install_macos() {
+    print_info "Setting up macOS environment..."
+
+    # Check if Homebrew is installed
+    if ! command_exists brew; then
+        print_error "Homebrew is not installed. Please install it first:"
+        echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        exit 1
+    fi
 
     chmod +x ./macos/install_packages.sh
     ./macos/install_packages.sh
@@ -17,8 +32,8 @@ install_macos_brew() {
 
 # Function to handle Ubuntu
 install_ubuntu() {
-    echo "ubuntu selected. Add your installation commands here."
-    
+    print_info "Setting up Ubuntu environment..."
+
     sudo apt update
     chmod +x ./ubuntu/install_packages.sh
     ./ubuntu/install_packages.sh
@@ -26,33 +41,71 @@ install_ubuntu() {
 
 # Function to handle WSL
 install_wsl() {
-    echo "wsl selected. Add your installation commands here."
+    print_info "Setting up WSL environment..."
+
+    # WSL typically uses Ubuntu, so run Ubuntu setup
+    sudo apt update
+    chmod +x ./ubuntu/install_packages.sh
+    ./ubuntu/install_packages.sh
 }
 
 # Main script
-echo "Select your environment:"
-echo "1) macos"
-echo "2) ubuntu"
-echo "3) wsl"
-read -p "Enter your choice (macos/ubuntu/wsl): " choice
+print_info "Dotfiles Installation Script"
+echo "================================"
+echo ""
+
+# Auto-detect platform
+DETECTED_PLATFORM=$(detect_platform)
+
+if [ "$DETECTED_PLATFORM" = "unknown" ]; then
+    print_error "Could not detect platform. Please run on macOS, Ubuntu, or WSL."
+    exit 1
+fi
+
+print_success "Detected platform: $DETECTED_PLATFORM"
+echo ""
+
+# Ask for confirmation or manual override
+read -p "Is this correct? (y/n) or enter platform manually (macos/ubuntu/wsl): " choice
 
 case "$choice" in
-    "macos")
-        install_macos_brew
-        install_common
+    y|Y|yes|YES)
+        PLATFORM=$DETECTED_PLATFORM
         ;;
-    "ubuntu")
-        install_ubuntu
-        install_common
+    n|N|no|NO)
+        read -p "Enter your platform (macos/ubuntu/wsl): " PLATFORM
         ;;
-    "wsl")
-        install_wsl
-        install_common
+    macos|ubuntu|wsl)
+        PLATFORM=$choice
         ;;
     *)
-        echo "Invalid choice. Please enter 'macos-brew', 'ubuntu', or 'wsl'."
+        print_error "Invalid choice. Exiting."
         exit 1
         ;;
 esac
 
-echo "Setup completed."
+print_info "Installing for platform: $PLATFORM"
+echo ""
+
+# Run platform-specific installation
+case "$PLATFORM" in
+    macos)
+        install_macos
+        install_common
+        ;;
+    ubuntu)
+        install_ubuntu
+        install_common
+        ;;
+    wsl)
+        install_wsl
+        install_common
+        ;;
+    *)
+        print_error "Invalid platform: $PLATFORM"
+        exit 1
+        ;;
+esac
+
+print_success "Setup completed successfully!"
+print_info "Please restart your terminal or run: source ~/.zshrc"
