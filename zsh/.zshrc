@@ -37,7 +37,6 @@ EDITOR="code"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # aliases
-alias cd="z"
 
 # Terraform aliases
 alias tera="terraform"
