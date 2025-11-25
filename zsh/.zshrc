@@ -74,6 +74,7 @@ alias tl="tmux ls"
 # Workspace aliases
 alias dot="cd $HOME/Workspace/Dotfiles"
 alias ft="cd $HOME/Workspace/Fastrak"
+alias psn="cd $HOME/Workspace/Personal"
 
 # Kubectl completion
 source <(kubectl completion zsh)
