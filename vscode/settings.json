@@ -42,6 +42,7 @@
   "terminal.integrated.customGlyphs": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
+  "terminal.integrated.suggest.enabled": false,
 
   // TypeScript settings
   "typescript.updateImportsOnFileMove.enabled": "always",
