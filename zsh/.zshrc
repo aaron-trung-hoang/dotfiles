@@ -24,8 +24,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,underline"
 bindkey -v
 export LC_ALL="en_US.UTF-8"
 export dry="--dry-run=client -o yaml";
-export PATH=$PATH:$HOME/go/bin;
-export GOBIN=$HOME/go/bin;
+export PATH="$PATH:/Users/macbook/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,5 +93,3 @@ else
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-
-source $HOME/claude_code_key.sh
