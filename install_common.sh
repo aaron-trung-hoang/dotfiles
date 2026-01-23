@@ -113,6 +113,49 @@ else
     print_warning "Background image not found, skipping..."
 fi
 
+# Setup VSCode configuration symlinks
+print_info "Setting up VSCode configuration..."
+
+# Determine VSCode config path based on platform
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    VSCODE_CONFIG_DIR="$HOME/Library/Application Support/Code/User"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    VSCODE_CONFIG_DIR="$HOME/.config/Code/User"
+else
+    VSCODE_CONFIG_DIR=""
+fi
+
+if [ -n "$VSCODE_CONFIG_DIR" ] && [ -d "$DOTFILES_DIR/vscode" ]; then
+    # Create VSCode config directory if it doesn't exist
+    mkdir -p "$VSCODE_CONFIG_DIR"
+
+    # Symlink settings.json
+    if [ -f "$DOTFILES_DIR/vscode/settings.json" ]; then
+        if [ -L "$VSCODE_CONFIG_DIR/settings.json" ]; then
+            print_info "VSCode settings.json is already a symlink. Removing it."
+            rm -f "$VSCODE_CONFIG_DIR/settings.json"
+        elif [ -f "$VSCODE_CONFIG_DIR/settings.json" ]; then
+            backup_file "$VSCODE_CONFIG_DIR/settings.json"
+        fi
+        ln -s "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_CONFIG_DIR/settings.json"
+        print_success "VSCode settings.json symlinked"
+    fi
+
+    # Symlink keybindings.json
+    if [ -f "$DOTFILES_DIR/vscode/keybindings.json" ]; then
+        if [ -L "$VSCODE_CONFIG_DIR/keybindings.json" ]; then
+            print_info "VSCode keybindings.json is already a symlink. Removing it."
+            rm -f "$VSCODE_CONFIG_DIR/keybindings.json"
+        elif [ -f "$VSCODE_CONFIG_DIR/keybindings.json" ]; then
+            backup_file "$VSCODE_CONFIG_DIR/keybindings.json"
+        fi
+        ln -s "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_CONFIG_DIR/keybindings.json"
+        print_success "VSCode keybindings.json symlinked"
+    fi
+else
+    print_warning "VSCode config directory not found or unsupported platform, skipping..."
+fi
+
 # Set zsh as default shell if not already
 if [ "$SHELL" != "$(which zsh)" ]; then
     print_info "Setting zsh as default shell..."
