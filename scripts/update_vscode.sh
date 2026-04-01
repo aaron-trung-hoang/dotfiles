@@ -6,6 +6,7 @@
 set -e
 
 # Source platform utilities
+# shellcheck disable=SC1091
 source "$(dirname "$0")/../lib/platform.sh"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

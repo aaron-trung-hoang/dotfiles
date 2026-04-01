@@ -29,7 +29,7 @@ done
 
 if command -v shellcheck >/dev/null 2>&1; then
   echo "[verify] Running shellcheck..."
-  shellcheck "${bash_files[@]}"
+  shellcheck -x "${bash_files[@]}"
 else
   echo "[verify] shellcheck not found; skipping shellcheck step."
 fi

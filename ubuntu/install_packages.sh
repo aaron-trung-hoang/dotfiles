@@ -3,6 +3,7 @@
 set -e  # Exit on error
 
 # Source platform utilities
+# shellcheck disable=SC1091
 source "$(dirname "$0")/../lib/platform.sh"
 
 print_info "Installing Ubuntu packages..."
@@ -21,13 +22,18 @@ sudo apt update
 if [ -f "$APT_PACKAGES_FILE" ]; then
     print_info "Installing apt packages..."
 
-    # Read packages and filter out empty lines
-    packages=$(grep -v '^$' "$APT_PACKAGES_FILE" | tr '\n' ' ')
+    # Read packages into an array, skipping empty/comment lines.
+    packages=()
+    while IFS= read -r package; do
+        if [ -n "$package" ] && [[ ! "$package" =~ ^# ]]; then
+            packages+=("$package")
+        fi
+    done < "$APT_PACKAGES_FILE"
 
-    if [ -n "$packages" ]; then
-        echo "Packages to install: $packages"
+    if [ "${#packages[@]}" -gt 0 ]; then
+        echo "Packages to install: ${packages[*]}"
         echo ""
-        sudo apt install -y $packages
+        sudo apt install -y "${packages[@]}"
         print_success "apt packages installed"
     else
         print_warning "No apt packages to install"

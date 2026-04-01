@@ -66,14 +66,14 @@ print_success "Detected platform: $DETECTED_PLATFORM"
 echo ""
 
 # Ask for confirmation or manual override
-read -p "Is this correct? (y/n) or enter platform manually (macos/ubuntu/wsl): " choice
+read -r -p "Is this correct? (y/n) or enter platform manually (macos/ubuntu/wsl): " choice
 
 case "$choice" in
     y|Y|yes|YES)
         PLATFORM=$DETECTED_PLATFORM
         ;;
     n|N|no|NO)
-        read -p "Enter your platform (macos/ubuntu/wsl): " PLATFORM
+        read -r -p "Enter your platform (macos/ubuntu/wsl): " PLATFORM
         ;;
     macos|ubuntu|wsl)
         PLATFORM=$choice

@@ -3,6 +3,7 @@
 set -e  # Exit on error
 
 # Source platform utilities
+# shellcheck disable=SC1091
 source "$(dirname "$0")/../lib/platform.sh"
 
 print_info "Installing macOS packages via Homebrew..."

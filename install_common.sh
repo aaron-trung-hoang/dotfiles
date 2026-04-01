@@ -75,7 +75,7 @@ dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua .gitconfig)
 for file in "${dotfiles[@]}"; do
     if [ -L "$HOME/$file" ]; then
         print_info "$file is already a symlink. Removing it."
-        rm -rf "$HOME/$file"
+        rm -f -- "${HOME:?}/$file"
     elif [ -f "$HOME/$file" ]; then
         backup_file "$HOME/$file"
     else
