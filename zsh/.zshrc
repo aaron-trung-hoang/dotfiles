@@ -76,11 +76,17 @@ alias ft="cd $HOME/Workspace/Fastrak"
 alias psn="cd $HOME/Workspace/Personal"
 
 # Kubectl completion
-source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 # tool init
-eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
 # NVM
@@ -93,7 +99,9 @@ else
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-eval "$(mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
 # bun completions
 [ -s "/Users/macbook/.bun/_bun" ] && source "/Users/macbook/.bun/_bun"
