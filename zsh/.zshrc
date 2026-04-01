@@ -24,7 +24,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,underline"
 bindkey -v
 export LC_ALL="en_US.UTF-8"
 export dry="--dry-run=client -o yaml";
-export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH:/Users/macbook/.local/bin"
+if [ -d "/opt/homebrew/share/google-cloud-sdk/bin" ]; then
+  export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
+fi
+export PATH="$PATH:$HOME/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +107,7 @@ if command -v mise >/dev/null 2>&1; then
 fi
 
 # bun completions
-[ -s "/Users/macbook/.bun/_bun" ] && source "/Users/macbook/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

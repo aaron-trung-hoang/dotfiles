@@ -152,14 +152,14 @@
   "makefile.configureOnOpen": true,
   "diffEditor.ignoreTrimWhitespace": true,
   "yaml.schemas": {
-    "file:///Users/macbook/.vscode/extensions/atlassian.atlascode-4.0.14/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+    "https://json.schemastore.org/bitbucket-pipelines.json": "bitbucket-pipelines.yml",
   },
   "git.blame.editorDecoration.enabled": true,
   "biome.suggestInstallingGlobally": false,
   "claudeCode.preferredLocation": "panel",
   "claudeCode.disableLoginPrompt": true,
   "claudeCode.selectedModel": "claude-opus-4-6",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.13",
+  "python.defaultInterpreterPath": "python3",
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
