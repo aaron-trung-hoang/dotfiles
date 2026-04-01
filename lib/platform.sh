@@ -55,9 +55,13 @@ check_dotfiles_dir() {
 backup_file() {
     local file=$1
     if [ -f "$file" ] && [ ! -L "$file" ]; then
+        local timestamp
+        local backup_path
+        timestamp="$(date +%Y%m%d_%H%M%S)"
+        backup_path="${file}.bak.${timestamp}"
         print_warning "$file already exists. Creating backup..."
-        mv "$file" "${file}.bak.$(date +%Y%m%d_%H%M%S)"
-        print_success "Backup created: ${file}.bak.$(date +%Y%m%d_%H%M%S)"
+        mv "$file" "$backup_path"
+        print_success "Backup created: $backup_path"
     fi
 }
 
