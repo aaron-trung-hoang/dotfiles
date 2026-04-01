@@ -93,8 +93,14 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 for config_dir in zsh tmux wezterm git; do
     if [ -d "$DOTFILES_DIR/$config_dir" ]; then
         print_info "Stowing $config_dir..."
-        stow -v -d "$DOTFILES_DIR" -t ~ "$config_dir" 2>&1 | grep -v "^LINK: " || true
-        print_success "$config_dir stowed successfully"
+        if stow_output=$(stow -v -d "$DOTFILES_DIR" -t ~ "$config_dir" 2>&1); then
+            echo "$stow_output" | grep -v "^LINK: " || true
+            print_success "$config_dir stowed successfully"
+        else
+            echo "$stow_output"
+            print_error "Failed to stow $config_dir"
+            exit 1
+        fi
     else
         print_warning "Directory $config_dir not found, skipping..."
     fi
