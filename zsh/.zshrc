@@ -24,7 +24,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,underline"
 bindkey -v
 export LC_ALL="en_US.UTF-8"
 export dry="--dry-run=client -o yaml";
-export PATH="$PATH:/Users/macbook/.local/bin"
+export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH:/Users/macbook/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,3 +93,14 @@ else
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
+eval "$(mise activate zsh)"
+
+# bun completions
+[ -s "/Users/macbook/.bun/_bun" ] && source "/Users/macbook/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# codex integration
+[[ -r "$HOME/.zshrc.codex" ]] && source "$HOME/.zshrc.codex"

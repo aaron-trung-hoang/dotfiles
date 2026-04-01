@@ -1,0 +1,9 @@
+# Load API key for Codex Azure usage if the key file exists.
+if [[ -r "$HOME/.codex/azure_key" ]]; then
+  export AZURE_OPENAI_API_KEY="$(<"$HOME/.codex/azure_key")"
+fi
+
+# Enable Codex completion only if the binary is available.
+if command -v codex >/dev/null 2>&1; then
+  eval "$(codex completion zsh)"
+fi
