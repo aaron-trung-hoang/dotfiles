@@ -30,23 +30,29 @@ if [ ! -d "$VSCODE_SETTINGS_DIR" ]; then
     exit 1
 fi
 
-# Copy settings.json
-if [ -f "$VSCODE_SETTINGS_DIR/settings.json" ]; then
-    print_info "Copying settings.json..."
-    cp "$VSCODE_SETTINGS_DIR/settings.json" "$DOTFILES_DIR/vscode/settings.json"
-    print_success "settings.json updated"
-else
-    print_warning "settings.json not found"
-fi
+# Copy only when source and destination are not the same file.
+copy_vscode_file() {
+    local filename=$1
+    local source_file="$VSCODE_SETTINGS_DIR/$filename"
+    local target_file="$DOTFILES_DIR/vscode/$filename"
 
-# Copy keybindings.json
-if [ -f "$VSCODE_SETTINGS_DIR/keybindings.json" ]; then
-    print_info "Copying keybindings.json..."
-    cp "$VSCODE_SETTINGS_DIR/keybindings.json" "$DOTFILES_DIR/vscode/keybindings.json"
-    print_success "keybindings.json updated"
-else
-    print_warning "keybindings.json not found"
-fi
+    if [ ! -f "$source_file" ]; then
+        print_warning "$filename not found"
+        return 0
+    fi
+
+    if [ -e "$target_file" ] && [ "$source_file" -ef "$target_file" ]; then
+        print_info "$filename already points to dotfiles target; skipping copy"
+        return 0
+    fi
+
+    print_info "Copying $filename..."
+    cp "$source_file" "$target_file"
+    print_success "$filename updated"
+}
+
+copy_vscode_file "settings.json"
+copy_vscode_file "keybindings.json"
 
 print_success "VSCode settings updated in dotfiles!"
 print_info "Don't forget to commit the changes!"
