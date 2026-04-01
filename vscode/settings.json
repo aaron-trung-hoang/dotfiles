@@ -1,13 +1,13 @@
 {
   // Language specific settings
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.black-formatter",
   },
 
   // Auto sync settings
@@ -58,7 +58,7 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   // Vim settings
@@ -68,7 +68,7 @@
   "vim.useCtrlKeys": true,
   "vim.handleKeys": {
     "<C-d>": true,
-    "<C-s>": false
+    "<C-s>": false,
   },
   // Enable surround plugin https://github.com/tpope/vim-surround
   "vim.surround": true,
@@ -86,19 +86,19 @@
     // panes
     {
       "before": ["leader", "h"],
-      "commands": ["workbench.action.focusLeftGroup"]
+      "commands": ["workbench.action.focusLeftGroup"],
     },
     {
       "before": ["leader", "j"],
-      "commands": ["workbench.action.focusBelowGroup"]
+      "commands": ["workbench.action.focusBelowGroup"],
     },
     {
       "before": ["leader", "k"],
-      "commands": ["workbench.action.focusAboveGroup"]
+      "commands": ["workbench.action.focusAboveGroup"],
     },
     {
       "before": ["leader", "l"],
-      "commands": ["workbench.action.focusRightGroup"]
+      "commands": ["workbench.action.focusRightGroup"],
     },
 
     // NICE TO HAVE
@@ -107,29 +107,29 @@
     { "before": ["leader", "x"], "commands": [":x!"] },
     {
       "before": ["[", "d"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev"],
     },
     {
       "before": ["]", "d"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next"],
     },
     {
       "before": ["<leader>", "c", "a"],
-      "commands": ["editor.action.quickFix"]
+      "commands": ["editor.action.quickFix"],
     },
     {
       "before": ["leader", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
     {
       "before": ["g", "h"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
+      "commands": ["editor.action.showDefinitionPreviewHover"],
     },
     {
       "before": ["g", "d"],
-      "commands": ["editor.action.goToTypeDefinition"]
-    }
+      "commands": ["editor.action.goToTypeDefinition"],
+    },
   ],
   "vim.visualModeKeyBindings": [
     // Stay in visual mode while indenting
@@ -137,27 +137,39 @@
     { "before": [">"], "commands": ["editor.action.indentLines"] },
     // Move selected lines while staying in visual mode
     { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
-    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] }
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["p"],
-      "commands": ["editor.action.clipboardPasteAction"]
-    }
+      "commands": ["editor.action.clipboardPasteAction"],
+    },
   ],
 
   // Set keyboard.dispatch to keyCode to fix some issue with key remapping in Gnome Tweak
   "keyboard.dispatch": "keyCode",
   "git.suggestSmartCommit": false,
   "makefile.configureOnOpen": true,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "yaml.schemas": {
-    "file:///Users/macbook/.vscode/extensions/atlassian.atlascode-4.0.14/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/macbook/.vscode/extensions/atlassian.atlascode-4.0.14/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
   },
   "git.blame.editorDecoration.enabled": true,
   "biome.suggestInstallingGlobally": false,
   "claudeCode.preferredLocation": "panel",
   "claudeCode.disableLoginPrompt": true,
-  "claudeCode.selectedModel": "claude-opus-4-5",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.13"
+  "claudeCode.selectedModel": "claude-opus-4-6",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.13",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "terminal.integrated.scrollback": 10000,
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://biomejs.dev": true,
+  },
 }
