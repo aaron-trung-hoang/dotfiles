@@ -15,7 +15,6 @@ config.window_background_image_hsb = {
     saturation = 0.8,
 }
 
-
 -- window setting
 config.window_background_opacity = 0.90
 config.macos_window_background_blur = 85
@@ -49,10 +48,6 @@ config.window_frame = {
 }
 
 -- others
-config.default_cursor_style = "BlinkingUnderline"
 config.cursor_thickness = 2
-config.keys = {
-  {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
-}
 
 return config
