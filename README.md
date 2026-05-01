@@ -11,7 +11,7 @@ Personal dotfiles for macOS, Ubuntu, and WSL.
 ## What this repo manages
 
 - Shell: `zsh/.zshrc`, `zsh/.zshenv`, `zsh/.p10k.zsh`, `zsh/.zshrc.codex`
-- Terminal: `tmux/.tmux.conf`, `wezterm/.wezterm.lua`
+- Terminal: `tmux/.tmux.conf`, `wezterm/.wezterm.lua`, `wezterm/README.md`
 - Git: `git/.gitconfig`
 - VS Code: `vscode/settings.json`, `vscode/keybindings.json`
 - Package sets:
