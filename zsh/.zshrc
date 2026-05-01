@@ -21,7 +21,9 @@ plugins=(git aws zsh-autosuggestions zsh-syntax-highlighting)
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,underline"
 
-bindkey -v
+# Make vi-mode Escape responsive. Zsh measures this in hundredths of a second.
+# The default (40 = 400ms) can make mode switching feel laggy in terminals.
+KEYTIMEOUT=1
 export LC_ALL="en_US.UTF-8"
 export dry="--dry-run=client -o yaml";
 if [ -d "/opt/homebrew/share/google-cloud-sdk/bin" ]; then
@@ -30,6 +32,10 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
+
+# Oh My Zsh's lib/key-bindings.zsh sets emacs mode via `bindkey -e`,
+# so enable vi mode after sourcing OMZ.
+bindkey -v
 
 # source ~/Documents/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
