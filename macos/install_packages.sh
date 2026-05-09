@@ -28,12 +28,6 @@ fi
 print_info "Updating Homebrew..."
 brew update
 
-# Backup existing Brewfile if it exists in home
-if [ -f ~/Brewfile ]; then
-    print_warning "Backing up existing ~/Brewfile"
-    backup_file ~/Brewfile
-fi
-
 # Install from Brewfile
 print_info "Installing packages from Brewfile..."
 print_info "This may take a while..."
