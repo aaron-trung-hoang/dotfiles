@@ -84,6 +84,9 @@ alias dot="cd $HOME/Workspace/Dotfiles"
 alias ft="cd $HOME/Workspace/Fastrak"
 alias psn="cd $HOME/Workspace/Personal"
 
+# Mise aliases
+alias mr="mise run"
+
 # Kubectl completion
 if command -v kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
