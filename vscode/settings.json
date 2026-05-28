@@ -163,6 +163,7 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "explorer.compactFolders": false,
   "terminal.integrated.scrollback": 10000,
   "json.schemaDownload.trustedDomains": {
     "http://json.schemastore.org": true,
@@ -175,6 +176,5 @@
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true
-  },
-  "workbench.activityBar.compact": true
+  }
 }
