@@ -100,6 +100,22 @@
       "before": ["leader", "l"],
       "commands": ["workbench.action.focusRightGroup"]
     },
+    {
+      "before": ["leader", "r", "h"],
+      "commands": ["workbench.action.decreaseViewWidth"]
+    },
+    {
+      "before": ["leader", "r", "j"],
+      "commands": ["workbench.action.increaseViewHeight"]
+    },
+    {
+      "before": ["leader", "r", "k"],
+      "commands": ["workbench.action.decreaseViewHeight"]
+    },
+    {
+      "before": ["leader", "r", "l"],
+      "commands": ["workbench.action.increaseViewWidth"]
+    },
 
     // NICE TO HAVE
     { "before": ["leader", "w"], "commands": [":w!"] },
@@ -176,5 +192,6 @@
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true
-  }
+  },
+  "workbench.notifications.position": "bottom-left"
 }
