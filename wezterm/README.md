@@ -14,7 +14,7 @@ The current config is intentionally visual and minimal:
 - Tab bar enabled: `enable_tab_bar = true`
 - Large default window: `170 x 50`
 - Theme: `Tokyo Night`
-- Font: `JetBrainsMono Nerd Font Mono`, `Medium`, `Expanded`, size `15`
+- Font: `JetBrainsMono Nerd Font`, `Medium`, `Expanded`, size `15`
 
 Because `window_decorations = "RESIZE"` removes the native title bar, the tab bar becomes the main visible top chrome. You can still resize the window, and the tab bar is the most natural place to drag the window around.
 

@@ -30,7 +30,7 @@ config.initial_rows = 50 -- set height in character cells
 
 
 config.color_scheme = "Tokyo Night"
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium", stretch = "Expanded" })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 15
 
 config.window_decorations = "RESIZE"
