@@ -90,3 +90,5 @@ Update these files manually when you add/remove packages:
 ## Notes
 
 These are personal preferences. Adjust as needed before using on another machine.
+
+To enable holding down a key, check [this](http://apple.stackexchange.com/questions/332769/macos-disable-popup-showing-accented-characters-when-holding-down-a-key) out.
