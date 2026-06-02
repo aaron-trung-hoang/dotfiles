@@ -83,6 +83,7 @@ alias tl="tmux ls"
 alias dot="cd $HOME/Workspace/Dotfiles"
 alias ft="cd $HOME/Workspace/Fastrak"
 alias psn="cd $HOME/Workspace/Personal"
+alias pl="cd $HOME/Workspace/Play"
 
 # Mise aliases
 alias mr="mise run"
