@@ -193,5 +193,6 @@
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true
   },
-  "workbench.notifications.position": "bottom-left"
+  "workbench.notifications.position": "bottom-left",
+  "workbench.startupEditor": "none"
 }
