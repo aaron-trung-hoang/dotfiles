@@ -1,6 +1,6 @@
 # Load API key for Codex Azure usage if the key file exists.
-if [[ -r "$HOME/.codex/azure_key" ]]; then
-  export AZURE_OPENAI_API_KEY="$(<"$HOME/.codex/azure_key")"
+if [[ -r "$HOME/.codex/openrouter_key" ]]; then
+  export OPENROUTER_API_KEY="$(<"$HOME/.codex/openrouter_key")"
 fi
 
 # Enable Codex completion only if the binary is available.
