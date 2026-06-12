@@ -14,7 +14,7 @@
   "settingsSync.keybindingsPerPlatform": false,
 
   // Editor settings
-  "breadcrumbs.enabled": false,
+  "breadcrumbs.enabled": true,
   "editor.cursorStyle": "line-thin",
   "editor.formatOnSave": true,
   "editor.lineNumbers": "relative",
