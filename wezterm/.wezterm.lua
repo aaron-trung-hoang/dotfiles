@@ -36,6 +36,9 @@ config.font_size = 15
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
 
+-- to enable shift + enter for new lines in codex, claude code
+config.enable_kitty_keyboard = true
+
 config.window_frame = {
     border_left_width = "0.28cell",
     border_right_width = "0.28cell",
