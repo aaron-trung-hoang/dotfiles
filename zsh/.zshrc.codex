@@ -3,6 +3,46 @@ if [[ -r "$HOME/.codex/openrouter_key" ]]; then
   export OPENROUTER_API_KEY="$(<"$HOME/.codex/openrouter_key")"
 fi
 
+codex-provider() {
+  local provider="$1"
+  local codex_home="${CODEX_HOME:-$HOME/.codex}"
+  local source_config
+
+  case "$provider" in
+    openai|openrouter)
+      source_config="$codex_home/config_${provider}.toml"
+      ;;
+    *)
+      echo "usage: codex-provider openai|openrouter" >&2
+      return 2
+      ;;
+  esac
+
+  if [[ ! -r "$source_config" ]]; then
+    echo "missing config: $source_config" >&2
+    return 1
+  fi
+
+  cp "$source_config" "$codex_home/config.toml"
+  echo "codex provider switched to $provider"
+}
+
+alias codex-openai='codex-provider openai'
+alias codex-openrouter='codex-provider openrouter'
+
+codex-provider-current() {
+  local codex_home="${CODEX_HOME:-$HOME/.codex}"
+
+  if cmp -s "$codex_home/config.toml" "$codex_home/config_openai.toml"; then
+    echo "codex provider: openai"
+  elif cmp -s "$codex_home/config.toml" "$codex_home/config_openrouter.toml"; then
+    echo "codex provider: openrouter"
+  else
+    echo "codex provider: custom config"
+    rg -n "^(model_provider|model|base_url|env_key) =" "$codex_home/config.toml"
+  fi
+}
+
 # Enable Codex completion only if the binary is available.
 if command -v codex >/dev/null 2>&1; then
   eval "$(codex completion zsh)"
