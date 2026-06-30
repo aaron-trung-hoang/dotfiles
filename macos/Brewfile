@@ -1,55 +1,99 @@
+tap "azure/kubelogin", "https://github.com/Azure/homebrew-kubelogin"
 tap "derailed/k9s"
-tap "hudochenkov/sshpass"
 tap "hashicorp/tap"
+tap "hudochenkov/sshpass"
 tap "nikitabobko/tap"
+# Simple, modern, secure file encryption
 brew "age"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# AWS Cloud Development Kit - framework for defining AWS infra as code
 brew "aws-cdk"
+# Official Amazon AWS command-line interface
 brew "awscli"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
-brew "fzf"
-brew "gh"
-brew "git"
-brew "git-filter-repo"
-brew "go"
-brew "go-air"
-brew "golang-migrate"
-brew "graphviz"
-brew "helm"
-brew "kind"
-brew "kubernetes-cli"
-brew "libpq"
-brew "make"
-brew "markdownlint-cli"
-brew "mise"
-brew "mole"
+# Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Live reload for Go apps
+brew "go-air"
+# Database migrations CLI tool
+brew "golang-migrate"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Kubernetes package manager
+brew "helm"
+# Run local Kubernetes cluster in Docker
+brew "kind"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Postgres C API library
+brew "libpq"
+# Utility for directing compilation
+brew "make"
+# CLI for Node.js style checker and lint tool for Markdown files
+brew "markdownlint-cli"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Deep clean and optimize your Mac
+brew "mole"
+# Manage multiple Node.js versions
 brew "nvm"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Editor of encrypted files
 brew "sops"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Programmatically correct mistyped console commands
+brew "thefuck"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extraction utility for .zip compressed archives
 brew "unzip"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
-brew "derailed/k9s/k9s"
-brew "hudochenkov/sshpass/sshpass"
-brew "hashicorp/tap/terraform"
+# A Kubernetes credential (exec) plugin implementing azure authentication
+brew "azure/kubelogin/kubelogin", trusted: true
+# Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Kubernetes IDE
+cask "freelens"
+# Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Open-source code editor
 cask "visual-studio-code"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm@nightly"
 vscode "adpyke.vscode-sql-formatter"
-vscode "bierner.markdown-mermaid"
-vscode "biomejs.biome"
 vscode "catppuccin.catppuccin-vsc"
 vscode "christian-kohler.npm-intellisense"
 vscode "ckolkman.vscode-postgres"
@@ -59,28 +103,20 @@ vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "formulahendry.code-runner"
 vscode "golang.go"
-vscode "gruntfuggly.todo-tree"
 vscode "hashicorp.terraform"
-vscode "kevinrose.vsc-python-indent"
 vscode "lkytal.pomodoro"
 vscode "mhutchie.git-graph"
 vscode "mikestead.dotenv"
 vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
-vscode "ms-python.autopep8"
-vscode "ms-python.black-formatter"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode.makefile-tools"
 vscode "njpwerner.autodocstring"
-vscode "njqdev.vscode-python-typehint"
 vscode "pkief.material-icon-theme"
-vscode "prisma.prisma"
 vscode "redhat.vscode-yaml"
 vscode "ritwickdey.liveserver"
 vscode "rvest.vs-code-prettier-eslint"
 vscode "tamasfe.even-better-toml"
+vscode "tim-koehler.helm-intellisense"
 vscode "tomoki1207.pdf"
-vscode "vercel.turbo-vsc"
 vscode "vscodevim.vim"
+vscode "wayou.vscode-todo-highlight"
+go "golang.org/x/tools/gopls"
