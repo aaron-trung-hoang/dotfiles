@@ -125,3 +125,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # codex integration
 [[ -r "$HOME/.zshrc.codex" ]] && source "$HOME/.zshrc.codex"
+
+eval $(thefuck --alias)
