@@ -62,10 +62,12 @@ ln -s "$managed_source" "$managed_target"
 ln -s "$foreign_source" "$foreign_target"
 
 prepare_stow_file "$managed_source" "$managed_target"
-if prepare_stow_file "$managed_source" "$foreign_target"; then
+foreign_check_output="$stow_target/foreign-check.log"
+if prepare_stow_file "$managed_source" "$foreign_target" >"$foreign_check_output" 2>&1; then
   echo "[verify] foreign symlink was accepted unexpectedly." >&2
   exit 1
 fi
+grep -q 'is a symlink managed outside this dotfiles repository' "$foreign_check_output"
 test -L "$foreign_target"
 cmp -s "$foreign_target" "$foreign_source"
 
