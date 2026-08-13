@@ -90,8 +90,14 @@ print_info "Applying stow for dotfiles..."
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Apply stow for each configuration directory
-for config_dir in zsh tmux wezterm git; do
+for config_dir in zsh tmux wezterm git codex; do
     if [ -d "$DOTFILES_DIR/$config_dir" ]; then
+        if [ "$config_dir" = "codex" ]; then
+            prepare_stow_file \
+                "$DOTFILES_DIR/codex/.codex/AGENTS.md" \
+                "$HOME/.codex/AGENTS.md"
+        fi
+
         print_info "Stowing $config_dir..."
         if stow_output=$(stow -v -d "$DOTFILES_DIR" -t ~ "$config_dir" 2>&1); then
             echo "$stow_output" | grep -v "^LINK: " || true

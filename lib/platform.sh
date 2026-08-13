@@ -65,6 +65,32 @@ backup_file() {
     fi
 }
 
+# Preserve foreign symlinks and back up regular files before Stow takes ownership
+prepare_stow_file() {
+    local source_file=$1
+    local target_file=$2
+
+    mkdir -p "$(dirname "$target_file")"
+
+    if [ -L "$target_file" ]; then
+        if [ "$target_file" -ef "$source_file" ]; then
+            print_info "$target_file is already linked to this dotfiles repository"
+            return 0
+        fi
+
+        print_error "$target_file is a symlink managed outside this dotfiles repository"
+        print_error "Preserving it. Remove it manually if you want Stow to replace it."
+        return 1
+    fi
+
+    if [ -f "$target_file" ]; then
+        backup_file "$target_file"
+    elif [ -e "$target_file" ]; then
+        print_error "$target_file exists and is not a regular file"
+        return 1
+    fi
+}
+
 # Export functions
 export -f detect_platform
 export -f command_exists
@@ -74,3 +100,4 @@ export -f print_error
 export -f print_warning
 export -f check_dotfiles_dir
 export -f backup_file
+export -f prepare_stow_file

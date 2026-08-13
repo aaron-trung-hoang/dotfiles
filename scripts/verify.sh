@@ -34,4 +34,39 @@ else
   echo "[verify] shellcheck not found; skipping shellcheck step."
 fi
 
+echo "[verify] Checking Codex global instructions package..."
+test -f "codex/.codex/AGENTS.md"
+grep -Eq 'for config_dir in .*codex' install_common.sh
+
+if ! command -v stow >/dev/null 2>&1; then
+  echo "[verify] stow is required for the Codex package link check." >&2
+  exit 1
+fi
+
+stow_target="$(mktemp -d)"
+trap 'rm -rf -- "$stow_target"' EXIT
+mkdir -p "$stow_target/.codex"
+stow -d "$ROOT_DIR" -t "$stow_target" codex
+test -L "$stow_target/.codex/AGENTS.md"
+cmp -s "$stow_target/.codex/AGENTS.md" "$ROOT_DIR/codex/.codex/AGENTS.md"
+
+echo "[verify] Checking safe Stow target preparation..."
+source "$ROOT_DIR/lib/platform.sh"
+managed_source="$stow_target/managed-AGENTS.md"
+foreign_source="$stow_target/foreign-AGENTS.md"
+managed_target="$stow_target/.codex/managed-AGENTS.md"
+foreign_target="$stow_target/.codex/foreign-AGENTS.md"
+printf '%s\n' managed > "$managed_source"
+printf '%s\n' foreign > "$foreign_source"
+ln -s "$managed_source" "$managed_target"
+ln -s "$foreign_source" "$foreign_target"
+
+prepare_stow_file "$managed_source" "$managed_target"
+if prepare_stow_file "$managed_source" "$foreign_target"; then
+  echo "[verify] foreign symlink was accepted unexpectedly." >&2
+  exit 1
+fi
+test -L "$foreign_target"
+cmp -s "$foreign_target" "$foreign_source"
+
 echo "[verify] All checks passed."
