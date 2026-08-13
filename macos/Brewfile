@@ -1,3 +1,4 @@
+tap "argoproj/tap"
 tap "azure/kubelogin", "https://github.com/Azure/homebrew-kubelogin"
 tap "derailed/k9s"
 tap "hashicorp/tap"
@@ -11,8 +12,6 @@ brew "node"
 brew "aws-cdk"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -23,6 +22,8 @@ brew "curl"
 brew "fastfetch"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# TIFF library and utilities
+brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -53,6 +54,8 @@ brew "markdownlint-cli"
 brew "mise"
 # Deep clean and optimize your Mac
 brew "mole"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Manage multiple Node.js versions
 brew "nvm"
 # Execute binaries from Python packages in isolated environments
@@ -61,6 +64,8 @@ brew "pipx"
 brew "pnpm"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Editor of encrypted files
@@ -79,6 +84,8 @@ brew "unzip"
 brew "uv"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Kubectl Argo Rollouts Plugin.
+brew "argoproj/tap/kubectl-argo-rollouts", trusted: true
 # A Kubernetes credential (exec) plugin implementing azure authentication
 brew "azure/kubelogin/kubelogin", trusted: true
 # Terminal-based AI coding assistant
@@ -89,6 +96,8 @@ cask "codex"
 cask "freelens"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Browse, manage, inspect containers and images
+cask "podman-desktop"
 # Open-source code editor
 cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
@@ -105,8 +114,10 @@ vscode "formulahendry.code-runner"
 vscode "golang.go"
 vscode "hashicorp.terraform"
 vscode "lkytal.pomodoro"
+vscode "mechatroner.rainbow-csv"
 vscode "mhutchie.git-graph"
 vscode "mikestead.dotenv"
+vscode "ms-azuretools.vscode-azureterraform"
 vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "ms-vscode.makefile-tools"
 vscode "njpwerner.autodocstring"
