@@ -197,6 +197,30 @@ return {
       },
     },
   },
+  -- Visualize persistent undo history and switch between divergent edit branches.
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>uu", "<cmd>UndotreeToggle<cr>", desc = "Undo tree" },
+    },
+  },
+  -- Render Markdown structure in normal mode and restore raw punctuation while editing.
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = "markdown",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
+    opts = {
+      html = { enabled = false }, -- No HTML parser is installed.
+      latex = { enabled = false }, -- No LaTeX parser or converter is installed.
+      win_options = {
+        conceallevel = {
+          default = 0,
+          rendered = 3,
+        },
+      },
+    },
+  },
   -- Replace Neovim's plain status line with only the current mode and file path.
   {
     "nvim-lualine/lualine.nvim",
