@@ -21,8 +21,11 @@ arguments, and output parsers should continue to come from the relevant plugin.
 
 | Language | LSP | Formatter | Standalone linter |
 | --- | --- | --- | --- |
-| Shell | `bashls` | `shfmt` | `shellcheck` |
-| Lua | `lua_ls` | `stylua` | None - use LSP diagnostics |
+| Go | `gopls` | LSP fallback | None - use LSP diagnostics |
+| Shell | `bashls` | LSP fallback via `shfmt` | None |
+| Lua | `lua_ls` | LSP fallback | None - use LSP diagnostics |
+| Terraform | `terraformls` | LSP fallback | None - use LSP diagnostics |
+| TOML | `taplo` | LSP fallback | None - use LSP diagnostics |
 | YAML | `yamlls` | LSP fallback | None - use LSP diagnostics |
 
 ### LSP and Mason
@@ -39,22 +42,20 @@ arguments, and output parsers should continue to come from the relevant plugin.
 ### Formatting
 
 - `lua/plugins/formatting.lua` owns Conform configuration.
-- For a new external formatter, add its package to `tools` in `lsp.lua` when
-  Mason manages it, then add the filetype route to `formatters_by_ft`.
-- Prefer a dedicated formatter. Keep LSP formatting as the fallback when no
-  dedicated formatter is configured.
+- Prefer formatting through the attached language server. When a server delegates
+  to an external executable, keep that tool in `tools` in `lsp.lua` so Mason
+  installs it reproducibly.
+- Add a Conform filetype route only when a dedicated formatter is concretely
+  better than the language server's formatting support.
 - Preserve the global and buffer-local `autoformat` toggles and make manual and
   format-on-save behavior use the same formatter selection.
 
 ### Linting
 
-- `lua/plugins/linting.lua` owns nvim-lint configuration.
-- Add a linter to `linters_by_ft` only when it provides useful diagnostics that
-  the language server does not already provide. Avoid duplicate diagnostics.
-- ShellCheck is installed by the macOS Brewfile rather than Mason. Keep the
-  installation source explicit when adding another linter.
-- Preserve automatic linting on buffer entry, save, and `InsertLeave`, plus the
-  manual `<leader>cL` mapping.
+- No standalone linter plugin is configured. Prefer language-server diagnostics
+  unless a separate linter provides concrete additional value.
+- Bash LS has its ShellCheck integration explicitly disabled. ShellCheck remains
+  a repository verification tool installed by the macOS Brewfile.
 
 ## Adding a language
 
@@ -62,7 +63,7 @@ arguments, and output parsers should continue to come from the relevant plugin.
    standalone linter, and Tree-sitter parser. Do not assume it needs all four.
 2. Add the server and only necessary overrides to `servers` in `lsp.lua`.
 3. Add external Mason-managed tools to `tools` in `lsp.lua`.
-4. Add formatter and linter filetype routes in their respective plugin files.
+4. Add formatter or linter routes only when separate tools are necessary.
 5. Add only necessary Tree-sitter parsers in `treesitter.lua`.
 6. Sync lazy.nvim when plugins change and keep `lazy-lock.json` updated.
 7. Update this matrix when the supported language set changes.

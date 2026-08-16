@@ -1,7 +1,17 @@
 -- This table is the single allowlist for language servers.
 -- Adding a name here makes Mason install it and Neovim configure and enable it.
 local servers = {
-  bashls = {},
+  bashls = {
+    settings = {
+      bashIde = {
+        -- Keep shell diagnostics lightweight instead of invoking standalone ShellCheck.
+        shellcheckPath = "",
+        -- Bash LS delegates LSP formatting to shfmt; preserve case-body indentation.
+        shfmt = { caseIndent = true },
+      },
+    },
+  },
+  gopls = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -12,6 +22,8 @@ local servers = {
       },
     },
   },
+  taplo = {},
+  terraformls = {},
   -- Support regular YAML without registering unused Docker, GitLab, or Helm types.
   yamlls = { filetypes = { "yaml" } },
 }
@@ -19,8 +31,8 @@ local servers = {
 local server_names = vim.tbl_keys(servers)
 table.sort(server_names)
 
--- Mason also keeps the external formatters used by Conform reproducible.
-local tools = { "shfmt", "stylua" }
+-- Bash LS delegates document formatting to this external executable.
+local tools = { "shfmt" }
 
 return {
   -- Install external editor tools under Neovim's data directory.

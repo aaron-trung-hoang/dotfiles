@@ -80,8 +80,6 @@ return {
         { "<leader>b", group = "buffer" },
         { "<leader>c", group = "code" },
         { "<leader>f", group = "file/find" },
-        { "<leader>g", group = "git" },
-        { "<leader>gh", group = "hunks" },
         { "<leader>q", group = "quit" },
         { "<leader>s", group = "search" },
         { "<leader>u", group = "ui" },
@@ -107,48 +105,6 @@ return {
         end,
         desc = "Window mode",
       },
-    },
-  },
-  -- Mark added, changed, and deleted lines in the sign column.
-  -- Use ]h/[h to move between hunks, leader-g-h-p to preview, and
-  -- leader-g-h-s or leader-g-h-r to stage or reset the selected hunk.
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
-      },
-      on_attach = function(buffer)
-        local gitsigns = require("gitsigns")
-        local function bind(mode, lhs, rhs, desc)
-          vim.keymap.set(mode, lhs, rhs, { buffer = buffer, silent = true, desc = desc })
-        end
-
-        bind("n", "]h", function()
-          gitsigns.nav_hunk("next")
-        end, "Next hunk")
-        bind("n", "[h", function()
-          gitsigns.nav_hunk("prev")
-        end, "Previous hunk")
-        bind({ "n", "x" }, "<leader>ghs", ":Gitsigns stage_hunk<cr>", "Stage hunk")
-        bind({ "n", "x" }, "<leader>ghr", ":Gitsigns reset_hunk<cr>", "Reset hunk")
-        bind("n", "<leader>ghS", gitsigns.stage_buffer, "Stage buffer")
-        bind("n", "<leader>ghu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-        bind("n", "<leader>ghR", gitsigns.reset_buffer, "Reset buffer")
-        bind("n", "<leader>ghp", gitsigns.preview_hunk_inline, "Preview hunk")
-        bind("n", "<leader>ghb", function()
-          gitsigns.blame_line({ full = true })
-        end, "Blame line")
-        bind("n", "<leader>ghB", gitsigns.blame, "Blame buffer")
-        bind("n", "<leader>ghd", gitsigns.diffthis, "Diff this")
-        bind({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<cr>", "Select hunk")
-      end,
     },
   },
   -- Present diagnostics, symbols, LSP results, and quickfix entries in one UI.

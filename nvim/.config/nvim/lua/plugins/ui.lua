@@ -147,13 +147,6 @@ return {
         desc = "Find files in cwd",
       },
       {
-        "<leader>fg",
-        function()
-          Snacks.picker.git_files()
-        end,
-        desc = "Find Git files",
-      },
-      {
         "<leader>fr",
         function()
           Snacks.picker.recent()
@@ -180,49 +173,6 @@ return {
           Snacks.explorer()
         end,
         desc = "Explorer cwd",
-      },
-      {
-        "<leader>gs",
-        function()
-          Snacks.picker.git_status()
-        end,
-        desc = "Git status",
-      },
-      {
-        "<leader>gS",
-        function()
-          Snacks.picker.git_stash()
-        end,
-        desc = "Git stash",
-      },
-      {
-        "<leader>gd",
-        function()
-          Snacks.picker.git_diff()
-        end,
-        desc = "Git diff",
-      },
-      {
-        "<leader>gl",
-        function()
-          Snacks.picker.git_log()
-        end,
-        desc = "Git log",
-      },
-      {
-        "<leader>gb",
-        function()
-          Snacks.picker.git_log_line()
-        end,
-        desc = "Git blame line",
-      },
-      {
-        "<leader>gB",
-        function()
-          Snacks.gitbrowse()
-        end,
-        mode = { "n", "x" },
-        desc = "Git browse",
       },
       {
         "<leader>.",
