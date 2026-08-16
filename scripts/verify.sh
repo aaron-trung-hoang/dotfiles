@@ -34,6 +34,10 @@ else
   echo "[verify] shellcheck not found; skipping shellcheck step."
 fi
 
+echo "[verify] Checking tmux modified-key forwarding..."
+grep -Eq '^set -g extended-keys on$' tmux/.tmux.conf
+grep -Eq '^set -g extended-keys-format csi-u$' tmux/.tmux.conf
+
 echo "[verify] Checking Codex global instructions package..."
 test -f "codex/.codex/AGENTS.md"
 grep -Eq 'for config_dir in .*codex' install_common.sh
