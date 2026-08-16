@@ -34,7 +34,7 @@ config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium", stret
 config.font_size = 15
 
 config.window_decorations = "RESIZE"
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 
 -- to enable shift + enter for new lines in codex, claude code
 config.enable_kitty_keyboard = true
