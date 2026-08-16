@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local config = wezterm.config_builder()
-local io = require("io")
 local os = require("os")
 local brightness = 0.03
 
@@ -25,9 +25,13 @@ config.window_padding = {
     bottom = 0,
 }
 
-config.initial_cols = 200 -- set width in character cells
-config.initial_rows = 50 -- set height in character cells
-
+-- Fill the active display's macOS-managed usable area on startup. Maximizing,
+-- rather than guessing pixel or cell dimensions, accounts for the menu bar,
+-- Dock, display scaling, and the safe area below a MacBook notch.
+wezterm.on("gui-startup", function(cmd)
+    local _, _, window = mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium", stretch = "Expanded" })
