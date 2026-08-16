@@ -25,7 +25,7 @@ config.window_padding = {
     bottom = 0,
 }
 
-config.initial_cols = 170 -- set width in character cells
+config.initial_cols = 200 -- set width in character cells
 config.initial_rows = 50 -- set height in character cells
 
 
