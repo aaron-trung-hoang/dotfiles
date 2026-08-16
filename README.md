@@ -12,6 +12,7 @@ Personal dotfiles for macOS, Ubuntu, and WSL.
 
 - Shell: `zsh/.zshrc`, `zsh/.zshenv`, `zsh/.p10k.zsh`, `zsh/.zshrc.codex`
 - Terminal: `tmux/.tmux.conf`, `wezterm/.wezterm.lua`, `wezterm/README.md`
+- Editor: `nvim/.config/nvim`
 - Git: `git/.gitconfig`
 - Codex: `codex/.codex/AGENTS.md`
 - VS Code: `vscode/settings.json`, `vscode/keybindings.json`
@@ -36,7 +37,7 @@ chmod +x ./main.sh
 `install_common.sh` will:
 
 - install Oh My Zsh and zsh plugins if missing
-- stow dotfiles from `zsh`, `tmux`, `wezterm`, `git`, `codex`
+- stow dotfiles from `zsh`, `tmux`, `wezterm`, `git`, `codex`, `nvim`
 - set up VS Code config symlinks
 - copy `background/terminal.jpg` for WezTerm
 
@@ -81,6 +82,7 @@ Update these files manually when you add/remove packages:
 ├── lib/
 ├── macos/
 ├── main.sh
+├── nvim/
 ├── scripts/
 ├── tmux/
 ├── ubuntu/

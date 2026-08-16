@@ -50,6 +50,27 @@ stow -d "$ROOT_DIR" -t "$stow_target" codex
 test -L "$stow_target/.codex/AGENTS.md"
 cmp -s "$stow_target/.codex/AGENTS.md" "$ROOT_DIR/codex/.codex/AGENTS.md"
 
+echo "[verify] Checking Neovim package..."
+grep -Eq 'for config_dir in .*nvim' install_common.sh
+
+nvim_stow_target="$stow_target/nvim-home"
+mkdir -p "$nvim_stow_target/.config"
+stow -d "$ROOT_DIR" -t "$nvim_stow_target" nvim
+test -e "$nvim_stow_target/.config/nvim/init.lua"
+cmp -s \
+  "$nvim_stow_target/.config/nvim/init.lua" \
+  "$ROOT_DIR/nvim/.config/nvim/init.lua"
+
+foreign_nvim_target="$stow_target/nvim-foreign-home"
+mkdir -p "$foreign_nvim_target/.config/nvim"
+printf '%s\n' 'foreign Neovim config' > "$foreign_nvim_target/.config/nvim/init.lua"
+foreign_nvim_check_output="$stow_target/nvim-foreign-check.log"
+if stow -d "$ROOT_DIR" -t "$foreign_nvim_target" nvim >"$foreign_nvim_check_output" 2>&1; then
+  echo "[verify] foreign Neovim config was overwritten unexpectedly." >&2
+  exit 1
+fi
+grep -qx 'foreign Neovim config' "$foreign_nvim_target/.config/nvim/init.lua"
+
 echo "[verify] Checking safe Stow target preparation..."
 source "$ROOT_DIR/lib/platform.sh"
 managed_source="$stow_target/managed-AGENTS.md"
