@@ -28,24 +28,4 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
-  install = {
-    colorscheme = { "catppuccin-mocha", "habamax" },
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
-  change_detection = {
-    notify = false,
-  },
-  pkg = {
-    sources = { "lazy", "packspec" },
-  },
-  rocks = {
-    enabled = false,
-  },
-})
+require("lazy").setup('plugins')
