@@ -67,6 +67,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Keep raw Markdown punctuation visible while editing or rendering is disabled.
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("markdown_conceal"),
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
 -- Show JSON syntax characters that conceallevel would otherwise hide.
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("json_conceal"),
