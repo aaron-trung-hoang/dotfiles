@@ -22,6 +22,7 @@ arguments, and output parsers should continue to come from the relevant plugin.
 | Language | LSP | Formatter | Standalone linter |
 | --- | --- | --- | --- |
 | Go | `gopls` | LSP fallback | None - use LSP diagnostics |
+| Helm | `helm_ls` | None | None - use LSP diagnostics |
 | Shell | `bashls` | LSP fallback via `shfmt` | None |
 | Lua | `lua_ls` | LSP fallback | None - use LSP diagnostics |
 | Terraform | `terraformls` | LSP fallback | None - use LSP diagnostics |

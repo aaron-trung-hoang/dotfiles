@@ -5,6 +5,7 @@ local parsers = {
   "gosum",
   "gowork",
   "hcl",
+  "helm",
   "json",
   "lua",
   "luadoc",

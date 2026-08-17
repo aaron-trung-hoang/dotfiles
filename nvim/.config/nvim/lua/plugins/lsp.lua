@@ -12,6 +12,17 @@ local servers = {
     },
   },
   gopls = {},
+  helm_ls = {
+    settings = {
+      ["helm-ls"] = {
+        yamlls = {
+          -- Conditional resource kinds can select the wrong Kubernetes schema.
+          -- Keep Helm lint diagnostics while suppressing these YAML false positives.
+          diagnosticsLimit = 0,
+        },
+      },
+    },
+  },
   lua_ls = {
     settings = {
       Lua = {
@@ -24,7 +35,7 @@ local servers = {
   },
   taplo = {},
   terraformls = {},
-  -- Support regular YAML without registering unused Docker, GitLab, or Helm types.
+  -- Helm templates use their own filetype and server, leaving yamlls for regular YAML.
   yamlls = { filetypes = { "yaml" } },
 }
 
