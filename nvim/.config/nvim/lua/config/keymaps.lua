@@ -35,11 +35,24 @@ map("n", "<leader>bo", function()
   Snacks.bufdelete.other()
 end, { desc = "Delete other buffers" })
 
--- Escape clears search highlighting without changing normal Escape behavior.
+-- Escape clears search highlighting and saves modified file buffers.
 map({ "i", "n", "s" }, "<Esc>", function()
+  local buffer = vim.api.nvim_get_current_buf()
   vim.cmd("noh")
+  vim.schedule(function()
+    if
+      vim.api.nvim_buf_is_valid(buffer)
+      and vim.bo[buffer].buftype == ""
+      and vim.api.nvim_buf_get_name(buffer) ~= ""
+      and vim.bo[buffer].modified
+    then
+      vim.api.nvim_buf_call(buffer, function()
+        vim.cmd("silent update")
+      end)
+    end
+  end)
   return "<Esc>"
-end, { expr = true, desc = "Escape and clear search" })
+end, { expr = true, desc = "Escape, clear search, and save" })
 
 -- Save, indent, open Lazy, and create files.
 map({ "i", "n", "s", "x" }, "<C-s>", "<cmd>write<cr><esc>", { desc = "Save file" })
