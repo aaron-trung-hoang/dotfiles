@@ -106,8 +106,6 @@ cask "gcloud-cli"
 cask "podman-desktop"
 # Open-source code editor
 cask "visual-studio-code"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm@nightly"
 vscode "adpyke.vscode-sql-formatter"
 vscode "catppuccin.catppuccin-vsc"
 vscode "christian-kohler.npm-intellisense"
