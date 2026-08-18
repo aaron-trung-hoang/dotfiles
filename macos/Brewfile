@@ -40,6 +40,8 @@ brew "golang-migrate"
 brew "graphviz"
 # Kubernetes package manager
 brew "helm"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
 # Run local Kubernetes cluster in Docker
 brew "kind"
 # Kubernetes command-line interface
