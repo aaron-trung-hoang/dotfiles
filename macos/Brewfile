@@ -66,6 +66,8 @@ brew "pnpm"
 brew "poppler"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Editor of encrypted files
