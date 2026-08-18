@@ -69,7 +69,7 @@ if ! command_exists stow; then
 fi
 
 # Dotfiles to manage
-dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .wezterm.lua .gitconfig)
+dotfiles=(.zshrc .zshenv .p10k.zsh .tmux.conf .gitconfig)
 
 # Clean up existing files and create symbolic links
 for file in "${dotfiles[@]}"; do
@@ -90,13 +90,13 @@ print_info "Applying stow for dotfiles..."
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Apply stow for each configuration directory
-for config_dir in zsh tmux wezterm git codex nvim; do
+for config_dir in zsh tmux git codex nvim ghostty; do
     if [ -d "$DOTFILES_DIR/$config_dir" ]; then
         if [ "$config_dir" = "codex" ]; then
             prepare_stow_file \
                 "$DOTFILES_DIR/codex/.codex/AGENTS.md" \
                 "$HOME/.codex/AGENTS.md"
-        elif [ "$config_dir" = "nvim" ]; then
+        elif [ "$config_dir" = "nvim" ] || [ "$config_dir" = "ghostty" ]; then
             mkdir -p "$HOME/.config"
         fi
 
@@ -117,12 +117,12 @@ done
 echo ""
 print_info "Setting up additional configurations..."
 
-# Copy the background image for wezterm
+# Copy the terminal background image
 if [ -f "$DOTFILES_DIR/background/terminal.jpg" ]; then
-    print_info "Setting up WezTerm background..."
-    mkdir -p "$HOME/.background-wezterm"
-    cp "$DOTFILES_DIR/background/terminal.jpg" "$HOME/.background-wezterm/"
-    print_success "WezTerm background configured"
+    print_info "Setting up terminal background..."
+    mkdir -p "$HOME/.background-terminal"
+    cp "$DOTFILES_DIR/background/terminal.jpg" "$HOME/.background-terminal/"
+    print_success "Terminal background configured"
 else
     print_warning "Background image not found, skipping..."
 fi

@@ -75,6 +75,17 @@ if stow -d "$ROOT_DIR" -t "$foreign_nvim_target" nvim >"$foreign_nvim_check_outp
 fi
 grep -qx 'foreign Neovim config' "$foreign_nvim_target/.config/nvim/init.lua"
 
+echo "[verify] Checking Ghostty package..."
+grep -Eq 'for config_dir in .*ghostty' install_common.sh
+
+ghostty_stow_target="$stow_target/ghostty-home"
+mkdir -p "$ghostty_stow_target/.config"
+stow -d "$ROOT_DIR" -t "$ghostty_stow_target" ghostty
+test -e "$ghostty_stow_target/.config/ghostty/config.ghostty"
+cmp -s \
+  "$ghostty_stow_target/.config/ghostty/config.ghostty" \
+  "$ROOT_DIR/ghostty/.config/ghostty/config.ghostty"
+
 echo "[verify] Checking safe Stow target preparation..."
 source "$ROOT_DIR/lib/platform.sh"
 managed_source="$stow_target/managed-AGENTS.md"

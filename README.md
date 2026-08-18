@@ -11,7 +11,7 @@ Personal dotfiles for macOS, Ubuntu, and WSL.
 ## What this repo manages
 
 - Shell: `zsh/.zshrc`, `zsh/.zshenv`, `zsh/.p10k.zsh`, `zsh/.zshrc.codex`
-- Terminal: `tmux/.tmux.conf`, `wezterm/.wezterm.lua`, `wezterm/README.md`
+- Terminal: `tmux/.tmux.conf`, `ghostty/.config/ghostty/config.ghostty`
 - Editor: `nvim/.config/nvim`
 - Git: `git/.gitconfig`
 - Codex: `codex/.codex/AGENTS.md`
@@ -37,9 +37,9 @@ chmod +x ./main.sh
 `install_common.sh` will:
 
 - install Oh My Zsh and zsh plugins if missing
-- stow dotfiles from `zsh`, `tmux`, `wezterm`, `git`, `codex`, `nvim`
+- stow dotfiles from `zsh`, `tmux`, `git`, `codex`, `nvim`, `ghostty`
 - set up VS Code config symlinks
-- copy `background/terminal.jpg` for WezTerm
+- copy `background/terminal.jpg` for Ghostty
 
 ## Update workflows
 
@@ -78,6 +78,7 @@ Update these files manually when you add/remove packages:
 ├── claude/
 ├── codex/
 ├── git/
+├── ghostty/
 ├── install_common.sh
 ├── lib/
 ├── macos/
@@ -87,7 +88,6 @@ Update these files manually when you add/remove packages:
 ├── tmux/
 ├── ubuntu/
 ├── vscode/
-├── wezterm/
 └── zsh/
 ```
 
