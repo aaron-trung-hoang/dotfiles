@@ -1,0 +1,77 @@
+# =========================
+# Font
+# =========================
+
+font-family = JetBrainsMono Nerd Font
+font-style = Medium
+font-size = 15
+
+# Similar idea to WezTerm's stretch = "Expanded".
+# Ghostty doesn't have the same font-stretch setting,
+# so adjust cell width if you want a wider appearance.
+# adjust-cell-width = 5%
+
+
+# =========================
+# Theme
+# =========================
+
+theme = TokyoNight
+
+
+# =========================
+# Background image
+# =========================
+
+background-image = ~/.background-terminal/terminal.jpg
+
+# Closest equivalent to your brightness = 0.03.
+# This blends the image heavily into the terminal background.
+background-image-opacity = 0.12
+
+background-image-fit = cover
+background-image-position = center
+
+
+# =========================
+# Transparency / blur
+# =========================
+
+background-opacity = 1
+background-blur = 60
+
+
+# =========================
+# Window
+# =========================
+
+window-padding-x = 0
+window-padding-y = 0
+
+# Equivalent to your gui-startup maximize()
+maximize = true
+
+# Closest equivalent to:
+# window_decorations = "RESIZE"
+#
+# Hides titlebar but preserves native window frame,
+# rounded corners, resizing, etc.
+macos-titlebar-style = hidden
+
+
+# =========================
+# Cursor
+# =========================
+
+cursor-style = bar
+
+# Ghostty's value is an adjustment rather than an absolute width.
+# +1px should get close to your WezTerm cursor_thickness = 2.
+adjust-cursor-thickness = 1
+
+
+# =========================
+# Misc
+# =========================
+
+scrollbar = never

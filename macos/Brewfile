@@ -102,6 +102,8 @@ cask "codex"
 cask "freelens"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Browse, manage, inspect containers and images
 cask "podman-desktop"
 # Open-source code editor
