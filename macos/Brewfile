@@ -82,7 +82,7 @@ brew "thefuck"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Generate syntax parsers used by Neovim's Tree-sitter integration
+# Parser generator tool
 brew "tree-sitter-cli"
 # Extraction utility for .zip compressed archives
 brew "unzip"
