@@ -63,7 +63,12 @@ return {
       },
       explorer = { enabled = true }, -- Browse and edit the project tree.
       indent = { enabled = true }, -- Draw indentation guides and current scope.
-      picker = { enabled = true }, -- Search files, text, buffers, Git, and history.
+      picker = {
+        enabled = true,
+        sources = {
+          grep = { hidden = true },
+        },
+      }, -- Search files, text inside hidden files, buffers, Git, and history.
       scroll = { enabled = true }, -- Animate larger scroll movements.
       -- Use a bordered floating window instead of the default bottom split.
       -- The fixed title replaces Snacks' generated "1: shell@path" winbar.
