@@ -65,7 +65,16 @@ return {
       indent = { enabled = true }, -- Draw indentation guides and current scope.
       picker = {
         enabled = true,
+        -- Match and display the full relative path so directory segments are
+        -- useful when finding files with similar names.
+        formatters = {
+          file = { filename_only = false },
+        },
+        matcher = {
+          filename_bonus = false,
+        },
         sources = {
+          files = { hidden = true },
           grep = { hidden = true },
         },
       }, -- Search files, text inside hidden files, buffers, Git, and history.
