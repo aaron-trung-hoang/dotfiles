@@ -49,6 +49,17 @@ Neovim
     └── snacks → picker/files/terminal/UI
 ```
 
+## Future formatting and linting option
+
+`none-ls.nvim` could eventually replace both `conform.nvim` and a standalone
+linting plugin such as `nvim-lint`. It can expose external tools such as
+`shfmt`, `gofmt`, or `shellcheck` as LSP-like formatting and diagnostic sources.
+
+This is not part of the current setup. Formatting is handled by Conform and
+diagnostics are currently provided by the language servers. If `none-ls` is
+added later, duplicate formatting providers must be avoided between the real
+language servers and the `none-ls` sources.
+
 ## What happens when you open e.g. a Go file
 
 ```text
