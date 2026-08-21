@@ -20,7 +20,7 @@ return {
         -- available through their normal mappings or command-line commands.
         sections = {
           { section = "header" },
-          { section = "keys", gap = 1, padding = 1 },
+          { section = "keys",   gap = 1, padding = 1 },
           { section = "startup" },
         },
         preset = {
@@ -62,7 +62,7 @@ return {
         },
       },
       explorer = { enabled = true }, -- Browse and edit the project tree.
-      indent = { enabled = true }, -- Draw indentation guides and current scope.
+      indent = { enabled = true },   -- Draw indentation guides and current scope.
       picker = {
         enabled = true,
         -- Match and display the full relative path so directory segments are
@@ -77,7 +77,7 @@ return {
           files = { hidden = true },
           grep = { hidden = true },
         },
-      }, -- Search files, text inside hidden files, buffers, Git, and history.
+      },                           -- Search files, text inside hidden files, buffers, Git, and history.
       scroll = { enabled = true }, -- Animate larger scroll movements.
       -- Use a bordered floating window instead of the default bottom split.
       -- The fixed title replaces Snacks' generated "1: shell@path" winbar.
@@ -116,7 +116,14 @@ return {
         function()
           Snacks.picker.grep()
         end,
-        desc = "Grep project",
+        desc = "Grep cwd",
+      },
+      {
+        "<leader>sg",
+        function()
+          Snacks.picker.grep({ cwd = project_root() })
+        end,
+        desc = "Grep Git root",
       },
       {
         "<leader>:",
@@ -128,6 +135,7 @@ return {
       {
         "<leader><space>",
         function()
+          -- Snacks.picker.files() defaults to vim.uv.cwd().
           Snacks.picker.files()
         end,
         desc = "Find files",
@@ -225,7 +233,7 @@ return {
     ft = "markdown",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
     opts = {
-      html = { enabled = false }, -- No HTML parser is installed.
+      html = { enabled = false },  -- No HTML parser is installed.
       latex = { enabled = false }, -- No LaTeX parser or converter is installed.
       win_options = {
         conceallevel = {
