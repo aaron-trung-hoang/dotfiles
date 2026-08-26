@@ -1,6 +1,16 @@
--- Prefer the nearest Git root and let Git report a useful error when the
--- current working directory is not part of a repository.
+-- Prefer the focused Explorer item, then the current buffer, and let Git
+-- report a useful error when neither is part of a repository.
 local function git_root()
+  for _, explorer in ipairs(Snacks.picker.get({ source = "explorer" })) do
+    if explorer:is_focused() then
+      local item = explorer:current()
+      local root = item and item.file and vim.fs.root(item.file, { ".git" })
+      if root then
+        return root
+      end
+    end
+  end
+
   return vim.fs.root(0, { ".git" }) or vim.uv.cwd()
 end
 
