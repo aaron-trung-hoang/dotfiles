@@ -2,7 +2,7 @@
   name = Aaron Hoang Quoc Trung
 
 [core]
-  editor = code --wait
+  editor = nvim
   autocrlf = input
   excludesfile = ~/.gitignore_global
   preloadindex = true
