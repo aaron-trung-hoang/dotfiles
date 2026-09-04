@@ -37,6 +37,9 @@ fi
 echo "[verify] Checking tmux modified-key forwarding..."
 grep -Eq '^set -g extended-keys on$' tmux/.tmux.conf
 grep -Eq '^set -g extended-keys-format csi-u$' tmux/.tmux.conf
+grep -Eq "^set -s terminal-features\[[0-9]+\] 'xterm-ghostty:extkeys'$" tmux/.tmux.conf
+grep -Eq '^bind-key -n C-Tab next-window$' tmux/.tmux.conf
+grep -Eq '^bind-key -n C-BTab previous-window$' tmux/.tmux.conf
 
 echo "[verify] Checking Codex global instructions package..."
 test -f "codex/.codex/AGENTS.md"
@@ -77,6 +80,8 @@ grep -qx 'foreign Neovim config' "$foreign_nvim_target/.config/nvim/init.lua"
 
 echo "[verify] Checking Ghostty package..."
 grep -Eq 'for config_dir in .*ghostty' install_common.sh
+grep -Eq '^keybind = ctrl\+tab=csi:9;5u$' ghostty/.config/ghostty/config.ghostty
+grep -Eq '^keybind = ctrl\+shift\+tab=csi:9;6u$' ghostty/.config/ghostty/config.ghostty
 
 ghostty_stow_target="$stow_target/ghostty-home"
 mkdir -p "$ghostty_stow_target/.config"

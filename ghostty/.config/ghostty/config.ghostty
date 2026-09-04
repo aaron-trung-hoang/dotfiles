@@ -71,6 +71,14 @@ adjust-cursor-thickness = 1
 
 
 # =========================
+# Key bindings
+# =========================
+
+keybind = ctrl+tab=csi:9;5u
+keybind = ctrl+shift+tab=csi:9;6u
+
+
+# =========================
 # Misc
 # =========================
 
