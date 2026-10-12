@@ -1,5 +1,71 @@
 // Place your key bindings in this file to override the defaults
 [
+  // Override built-in and VSCodeVim Ctrl keys only in normal editor mode.
+  // Insert mode, the Explorer, and terminals keep their own keys.
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  // macOS Mission Control / Spaces must leave plain Ctrl+arrows available.
+  {
+    "key": "ctrl+up",
+    "command": "workbench.action.increaseViewHeight",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "workbench.action.decreaseViewHeight",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.decreaseViewWidth",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.increaseViewWidth",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
+  },
+
+  // Match Snacks picker movement without hijacking keys in other text inputs.
+  {
+    "key": "ctrl+j",
+    "command": "quickInput.next",
+    "when": "inQuickInput && quickInputType == 'quickPick'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "quickInput.previous",
+    "when": "inQuickInput && quickInputType == 'quickPick'"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "quickInput.next",
+    "when": "inQuickInput && quickInputType == 'quickPick'"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "quickInput.previous",
+    "when": "inQuickInput && quickInputType == 'quickPick'"
+  },
+
   // NAVIGATION
   {
     // "key": "ctrl+shift+a" => move focus to next terminal
@@ -38,16 +104,6 @@
 
   // FILE TREE
   {
-    "key": "ctrl+e",
-    "command": "workbench.action.closeSidebar",
-    "when": "sideBarFocus"
-  },
-  {
-    "key": "ctrl+e",
-    "command": "workbench.explorer.fileView.focus",
-    "when": "!sideBarFocus"
-  },
-  {
     "key": "n",
     "command": "explorer.newFile",
     "when": "filesExplorerFocus && !inputFocus"
@@ -83,24 +139,7 @@
     "command": "workbench.action.toggleZenMode"
   },
 
-  // Multiline editing
-  {
-    "key": "ctrl+n",
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
-  },
-
-  // disable default "findNextMatch" on both Linux and Mac
-  {
-    "key": "cmd+d",
-    "command": "-editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus && isMac"
-  },
-  {
-    "key": "ctrl+d",
-    "command": "-editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus && isLinux"
-  }
+  // Use the standard Cmd-d multi-cursor shortcut on macOS; Ctrl-n stays with Vim.
 
   // COPILOT KEY BINDINGS
   // DEPRECATED
