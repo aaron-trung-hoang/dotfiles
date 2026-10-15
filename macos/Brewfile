@@ -110,6 +110,8 @@ cask "ghostty"
 cask "podman-desktop"
 # Open-source code editor
 cask "visual-studio-code"
+# Menu bar toolkit with keep-awake, system monitor and volume mixer
+cask "vorssaint"
 vscode "adpyke.vscode-sql-formatter"
 vscode "catppuccin.catppuccin-vsc"
 vscode "christian-kohler.npm-intellisense"
