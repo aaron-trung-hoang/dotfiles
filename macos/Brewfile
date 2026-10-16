@@ -6,12 +6,16 @@ tap "hudochenkov/sshpass"
 tap "nikitabobko/tap"
 # Simple, modern, secure file encryption
 brew "age"
+# CLI toolkit for working with Akamai's APIs
+brew "akamai"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # AWS Cloud Development Kit - framework for defining AWS infra as code
 brew "aws-cdk"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -108,6 +112,8 @@ cask "gcloud-cli"
 cask "ghostty"
 # Browse, manage, inspect containers and images
 cask "podman-desktop"
+# Native database client for many database types
+cask "tablepro"
 # Open-source code editor
 cask "visual-studio-code"
 # Menu bar toolkit with keep-awake, system monitor and volume mixer
